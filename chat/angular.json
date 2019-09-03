@@ -3,9 +3,13 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "chat": {
+    "angular-8-role-based-authorization-example": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "less"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -13,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/chat",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,7 +28,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.less"
             ],
             "scripts": []
           },
@@ -50,11 +54,6 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
                 }
               ]
             }
@@ -63,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "chat:build"
+            "browserTarget": "angular-8-role-based-authorization-example:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "chat:build:production"
+              "browserTarget": "angular-8-role-based-authorization-example:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "chat:build"
+            "browserTarget": "angular-8-role-based-authorization-example:build"
           }
         },
         "test": {
@@ -89,7 +88,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.less"
             ],
             "scripts": []
           }
@@ -111,15 +110,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "chat:serve"
+            "devServerTarget": "angular-8-role-based-authorization-example:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "chat:serve:production"
+              "devServerTarget": "angular-8-role-based-authorization-example:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "chat"
+  "defaultProject": "angular-8-role-based-authorization-example"
 }
