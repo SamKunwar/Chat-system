@@ -5,15 +5,17 @@ import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '@app/services';
 
+
 @Component({ 
     selector: 'app-login',
     templateUrl: './login.component.html',
 })
+
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     loading = false;
     submitted = false;
-    returnUrl: string;
+    returnUrl: string = "app";
     error = '';
 
     constructor(
@@ -42,7 +44,6 @@ export class LoginComponent implements OnInit {
     get f() { return this.loginForm.controls; }
 
     onSubmit() {
-        this.submitted = true;
 
         // stop here if form is invalid
         if (this.loginForm.invalid) {
@@ -50,6 +51,8 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
+        // pipe changes the value into desired format
+        //first gives error if value doesnot mach the value in array
         this.authenticationService.login(this.f.username.value, this.f.password.value)
             .pipe(first())
             .subscribe(
@@ -60,6 +63,6 @@ export class LoginComponent implements OnInit {
                     this.error = error;
                     this.loading = false;
                 });
-                
+              
     }
 }

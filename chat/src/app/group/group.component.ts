@@ -14,18 +14,18 @@ export class GroupComponent implements OnInit {
   constructor(private heroService: HeroService) { }
 
   ngOnInit() {
-    this.getHeroes();
+    this.getgroup();
   }
 
-  getHeroes(): void {
-    this.heroService.getHeroes()
+  getgroup(): void {
+    this.heroService.getgroup()
     .subscribe(heroes => this.heroes = heroes);
   }
 
   add(name: string): void {
     name = name.trim();
     if (!name) { return; }
-    this.heroService.addHero({ name } as Hero)
+    this.heroService.addgroup({ name } as Hero)
       .subscribe(hero => {
         this.heroes.push(hero);
       });
@@ -33,7 +33,7 @@ export class GroupComponent implements OnInit {
 
   delete(hero: Hero): void {
     this.heroes = this.heroes.filter(h => h !== hero);
-    this.heroService.deleteHero(hero).subscribe();
+    this.heroService.deletegroup(hero).subscribe();
   }
 
 }

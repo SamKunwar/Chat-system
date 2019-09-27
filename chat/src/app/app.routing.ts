@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './_helpers';
-import { Role } from './models';
+import { Role } from './classes';
 import { GroupComponent } from './group/group.component';
 import { UserComponent } from './user/user.component';
 import { NormalUserComponent } from './normal-user/normal-user.component';

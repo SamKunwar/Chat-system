@@ -3,13 +3,14 @@ import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTT
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
-import { User, Role } from '@app/models';
+import { User, Role } from '@app/classes';
+import { AdminComponent } from '@app/admin/admin.component';
 
 const users: User[] = [
-    { id: 1, username: 'admin', password: 'admin', firstName: 'Super', lastName: 'Admin', role: Role.SuperAdmin },
-    { id: 2, username: 'user1', password: 'user1', firstName: 'Group', lastName: 'Admin', role: Role.GroupAdmin },
-    { id: 3, username: 'user2', password: 'user2', firstName: 'Group', lastName: 'Assis', role: Role.GroupAssis },
-    { id: 4, username: 'user3', password: 'user3', firstName: 'Normal', lastName: 'User', role: Role.NormalUser }
+    { id: 1, username: 'admin', password: 'admin', role: Role.SuperAdmin },
+    { id: 2, username: 'user1', password: 'user1', role: Role.GroupAdmin },
+    { id: 3, username: 'user2', password: 'user2', role: Role.GroupAssis },
+    { id: 4, username: 'user3', password: 'user3', role: Role.NormalUser }
 ];
 
 @Injectable()
@@ -48,8 +49,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return ok({
                 id: user.id,
                 username: user.username,
-                firstName: user.firstName,
-                lastName: user.lastName,
                 role: user.role,
                 token: `fake-jwt-token.${user.id}`
             });

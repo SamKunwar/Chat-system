@@ -1,21 +1,44 @@
-﻿<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
-    <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/">Home</a>
-        <a class="nav-item nav-link" routerLink="/admin" *ngIf="isSuperAdmin">Admin</a>
-        <a class="nav-item nav-link" routerLink="/group" *ngIf="isAdmin">Groups</a>
-        <a class="nav-item nav-link" routerLink="/user" *ngIf="isAdminOrAssis">Channels</a>
-        <a class="nav-item nav-link" routerLink="/normalUser" *ngIf="isAdminOrAssis">Users</a>
-        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+﻿<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" *ngIf="currentUser">
+    <a class="navbar-brand" href="#">Dashboard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link" (click)="logout()">Logout</a>
+            </li>
+        </ul>
     </div>
 </nav>
+<br>
 
-<!-- main app container -->
+
 <div class="container">
-    <router-outlet></router-outlet>
-</div>
+    <br>
+    <div class="row">
+        <div class="col-sm-8">
+            <router-outlet></router-outlet>
+        </div>
+        <div class="col-sm-4">
+            <app-admin *ngIf="isSuperAdmin"></app-admin>
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col-sm-4">
+            <app-user *ngIf="isAdminOrAssis"></app-user>
+        </div>
+        <div class="col-sm-4">
+            <app-normaluser *ngIf="isAdminOrAssis"></app-normaluser>
+        </div>
+        <div class="col-sm-4">
+            <app-group *ngIf="isAdminOrAssis"></app-group>
+        </div>
 
-<!-- credits -->
-<div class="text-center mt-4">
-
+    </div>
+    
+    
 </div>
